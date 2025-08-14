@@ -1,0 +1,33 @@
+<HomeScreen>:
+    name: "home"
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Expiry Date Tracker"
+            font_size: 24
+        Label:
+            id: items_list
+            text: "No items yet."
+        Button:
+            text: "Scan Item"
+            on_release: app.root.current = "scan"
+        Button:
+            text: "Exit"
+            on_release: app.stop()
+
+<ScanScreen>:
+    name: "scan"
+    BoxLayout:
+        orientation: "vertical"
+        FileChooserIconView:
+            id: filechooser
+            on_selection: root.select_image(filechooser.selection)
+        Label:
+            id: product_label
+            text: "Product: "
+        Label:
+            id: expiry_label
+            text: "Expiry Date: "
+        Button:
+            text: "Go Back"
+            on_release: app.root.current = "home"
